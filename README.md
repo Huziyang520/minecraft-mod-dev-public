@@ -51,7 +51,7 @@ minecraft-mod-dev/
 │   ├── 13-entities.md        # 生物分类 / 注册链 / 渲染对齐 / GeckoLib / 生命周期
 │   ├── 14-workflows.md       # 建新模组 / 扩版本 / 发版本 / 线上排障
 │   └── 15-docs.md            # 交付文档写什么、绝不写什么
-└── push.ps1                  # 一键推送脚本（本地用，不入库）
+└── push.ps1 / push.sh        # 一键推送脚本（本地用，不入库；见「更新与贡献」）
 ```
 
 **读法**：agent 只加载 `SKILL.md` 的 frontmatter（`name` + `description`），判定相关时才加载正文；正文里按需跳转到 `references/` 的某一篇。这就是"渐进式披露"，所以 `references/` 拆得越细、单次消耗的上下文越少。
@@ -296,10 +296,18 @@ git config --get http.proxy
 ### 7. 验证改完没漏
 
 ```bash
-grep -rn '<你的' . | grep -v README.md
+grep -rn '<你的' . --include='*.md'
 ```
 
-除了 `README.md` 和 `AGENTS.md` 里的占位符说明，`references/` 与 `SKILL.md` 里应当**没有**需要你填的占位符 —— 有的话说明那一处需要按你的环境补全。
+**占位符只在两处，含义固定，不需要全部替换**：
+
+| 出现位置 | 占位符 | 什么时候要改 |
+|---|---|---|
+| `AGENTS.md`（抄进你的模组仓库时） | `<JDK 17>` / `<JDK 21>` / `<JDK 25>` / `<JDK 8>` / `<你的代理地址与端口>` / `<你的 git 路径>` / `<你的测试实例前缀>` / `<禁部署标记>` / `<实例目录>` / `<脚本目录>` / `<你的备用反馈页>` / `<9.6.1>` / `<8.11>` | **必须全改**，否则 agent 会照着占位符干活 |
+| `references/`（只在你要照着执行某段命令时） | `<你的代理端口>`、`<你的 JDK 路径>`、`<脚本目录>`、`<你的反馈页>` 等 | 按需改；**不执行那段命令就不用动** |
+| `SKILL.md` | **无占位符**（只用 `<mod_id>` / `<version>` 这类**变量名**，不是要你填的值） | 不用改 |
+
+判断方法：占位符里带"你的"三个字 = 要按环境填；写成 `<mod_id>` / `<version>` / `<Loader>` = 只是文档里的变量名，照抄时换成自己的值即可。
 
 ---
 
@@ -335,6 +343,44 @@ grep -rn '<你的' . | grep -v README.md
 ```bash
 git pull
 ```
+
+### 一键推送脚本（`push.ps1` / `push.sh`）
+
+仓库根目录带两个功能等价的一键推送脚本，**只在本地使用、已在 `.gitignore` 中排除，不会进仓库**。它做的事：
+
+1. 检查 git 环境与远端配置（缺 `origin` 就自动加）；
+2. **校验 `.gitignore` 生效**：暂存区里出现 `.local/`、`push.*`、`.vscode/`、`*.log` 等就直接失败；
+3. 有改动就提交；
+4. 推送前若远端分支已存在且本地有基线记录，**比对远端哈希**；
+5. 推送后 **`ls-remote` 回读**，确认远端哈希 == 本地 HEAD 才算成功；
+6. 把本次哈希写进 `.local/last-push-<branch>.txt`，供下次强推比对。
+
+```powershell
+# Windows PowerShell
+.\push.ps1                                   # 提交并快进推送当前分支
+.\push.ps1 -Message "feat: add porting module"
+.\push.ps1 -Force                            # 强推（先比对远端哈希与基线，不一致就拒绝）
+.\push.ps1 -DryRun                           # 只打印将要执行的命令
+.\push.ps1 -Proxy "http://127.0.0.1:7890"    # 走代理
+.\push.ps1 -NoProxy                          # 强制直连
+```
+
+```bash
+# macOS / Linux / Git Bash
+./push.sh                                    # 提交并快进推送当前分支
+./push.sh -m "feat: add porting module"
+./push.sh -f                                 # 强推（先比对哈希与基线）
+./push.sh -d                                 # dry-run
+./push.sh -p "http://127.0.0.1:7890"         # 走代理
+./push.sh -n                                 # 强制直连
+```
+
+**为什么强推也要先比对哈希**：强推会不可逆地覆盖远端。脚本只在"远端哈希 == 上次推送后记录的基线"时才允许覆盖；不一致说明远端被别处更新过，脚本**直接拒绝并退出**，由你人工判断。确认远端是安全的，就手动把该哈希写进 `.local/last-push-<branch>.txt` 再重跑。
+
+> 远端是新建的空仓库时，第一次推送属"新建分支"，没有覆盖风险，脚本会正常放行。
+> 退出码：`0` 成功 / `1` 前置检查失败 / `2` 推送失败。
+
+### 贡献规则
 
 - 技能内容以 `SKILL.md` 为准，`references/` 是细节展开。改规则时**先改 `SKILL.md`，再同步 `references/`**，避免两处打架。
 - 新增实测结论请带**证据**（`javap` 输出、jar 解包结果、maven 元数据、错误原文），并标注证据强度（实测 / 推断）。
