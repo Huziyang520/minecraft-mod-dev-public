@@ -1,7 +1,7 @@
 # 13 生物、动画与 GeckoLib
 
 > 管什么：添加生物（原版组合体 / 原版换皮 / 全新生物）时的分类判定、注册链、渲染与判定箱对齐、AI 与 Goal、GeckoLib 5 资源路径、配置边界、货物生命周期、per-bone 渲染层、Mixin 注入器选择。
-> 上游：`SKILL.md`（结论以此为准）；本文件给细节、推导、数值与踩坑。相关：[12-art.md](12-art.md)（模型与贴图规范）、[05-mixin-api.md](05-mixin-api.md) §5.1（注入点核定与 remap）、[03-metadata.md](03-metadata.md)（资源扫描与注册表声明）、[10-troubleshooting.md](10-troubleshooting.md)（渲染/黑屏类症状索引）。
+> 本文件与 `references/` 其余模块同属一个技能包，**没有上位总纲**；结论冲突时以一手证据为准。本文件给细节、推导、数值与踩坑。相关：[12-art.md](12-art.md)（模型与贴图规范）、[05-mixin-api.md](05-mixin-api.md) §5.1（注入点核定与 remap）、[03-metadata.md](03-metadata.md)（资源扫描与注册表声明）、[10-troubleshooting.md](10-troubleshooting.md)（渲染/黑屏类症状索引）。
 
 标签：**铁律**（违反即返工）· **实测**（有一手证据）· **推断**（未实测，须先探针）。
 

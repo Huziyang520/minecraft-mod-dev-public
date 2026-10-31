@@ -1,7 +1,7 @@
 # 14 标准工作流（跨模块串联）
 
 > 本文件把散在各章的步骤串成**可直接照做的清单**：从零建模组、扩版本分支、发版本、线上排障。
-> 上游：`SKILL.md`（结论以此为准）；本文件给逐步动作、判定点与退出条件。
+> 本文件与 `references/` 其余模块同属一个技能包，**没有上位总纲**；结论冲突时以一手证据为准。本文件给逐步动作、判定点与退出条件。
 > 交叉引用：[01-publishing.md](01-publishing.md) · [02-environment.md](02-environment.md) · [03-metadata.md](03-metadata.md) · [06-build.md](06-build.md) · [07-porting.md](07-porting.md) · [08-deploy-qa.md](08-deploy-qa.md) · [09-git-upload.md](09-git-upload.md) · [10-troubleshooting.md](10-troubleshooting.md)
 
 ---

@@ -1,7 +1,7 @@
 # 3 工程结构与元数据
 
 > 管什么：MultiLoader 工程结构、`fabric.mod.json` / `neoforge.mods.toml` / `mods.toml` 字段全集与落位、模组菜单图标与链接槽位、`pack.mcmeta` 各版本取值、资源枚举、产物命名、`expand` 陷阱、KnownPack。
-> 上游：`SKILL.md`（结论以此为准）；本文件给出模板、字段表、版本分界与判定手法。相关：[01-publishing.md](01-publishing.md) §1.1（身份字段取值）、[04-i18n.md](04-i18n.md) §4.1（语言键与 BOM）、[06-build.md](06-build.md) §6.4（`processResources` 配置）、[11-verdicts.md](11-verdicts.md)（易错结论对照）。
+> 本文件与 `references/` 其余模块同属一个技能包，**没有上位总纲**；结论冲突时以一手证据为准。本文件给出模板、字段表、版本分界与判定手法。相关：[01-publishing.md](01-publishing.md) §1.1（身份字段取值）、[04-i18n.md](04-i18n.md) §4.1（语言键与 BOM）、[06-build.md](06-build.md) §6.4（`processResources` 配置）、[11-verdicts.md](11-verdicts.md)（易错结论对照）。
 
 本文件的示例用 `yourmod` 表示"你的 modId"，用 `<…>` 与 `${…}` 表示需要替换的占位。它们不代表任何真实项目，只是位置标记。
 

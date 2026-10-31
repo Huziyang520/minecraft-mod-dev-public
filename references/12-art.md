@@ -1,7 +1,7 @@
 # 12 AI 美术制作（Blockbench 模型与贴图）
 
 > 管什么：用 Blockbench（含可编程 MCP 接口）产出方块风模型与贴图时，必须遵守的像素密度、UV、共面、源区取料、分层染色判据，以及工具层操作纪律与验收手法。
-> 上游：`SKILL.md`（结论以此为准）；本文件给细节、数值与案例。相关：[13-entities.md](13-entities.md) §13.4（模型 / 判定箱 / 渲染偏移对齐）、[10-troubleshooting.md](10-troubleshooting.md)（闪烁与杂点类症状索引）。
+> 本文件与 `references/` 其余模块同属一个技能包，**没有上位总纲**；结论冲突时以一手证据为准。本文件给细节、数值与案例。相关：[13-entities.md](13-entities.md) §13.4（模型 / 判定箱 / 渲染偏移对齐）、[10-troubleshooting.md](10-troubleshooting.md)（闪烁与杂点类症状索引）。
 
 标签：**铁律**（违反即返工）· **实测**（有一手证据）· **推断**（未实测，须先验证）。
 

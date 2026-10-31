@@ -1,7 +1,7 @@
 # 2 环境与工具链
 
 > 管什么：Java 分档与"真 JDK"判定、老版本线的 Java 8 定夺、Gradle 三铁律与档位依据、Maven 镜像、`JAVA_HOME` 选择、环境残骸识别、开工前自检。
-> 上游：`SKILL.md`（结论以此为准）；本文件给出判定手法、命令、依据表与踩坑结论。相关：[06-build.md](06-build.md) §6.1（Gradle 档位完整依据与插件换代）、[07-porting.md](07-porting.md)（按 MC 版本分线）、[10-troubleshooting.md](10-troubleshooting.md)（构建期"空输出"类故障）。
+> 本文件与 `references/` 其余模块同属一个技能包，**没有上位总纲**；结论冲突时以一手证据为准。本文件给出判定手法、命令、依据表与踩坑结论。相关：[06-build.md](06-build.md) §6.1（Gradle 档位完整依据与插件换代）、[07-porting.md](07-porting.md)（按 MC 版本分线）、[10-troubleshooting.md](10-troubleshooting.md)（构建期"空输出"类故障）。
 
 本文件不记录任何一台具体机器的路径与缓存清单。凡是"这台机器上在哪"的问题，都改成**怎么查出来**——路径会随启动器更新、JDK 升级、目录搬迁而失效，方法不会。
 
